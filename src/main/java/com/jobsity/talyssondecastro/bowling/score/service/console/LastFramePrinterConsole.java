@@ -1,11 +1,11 @@
-package com.jobsity.talyssondecastro.bowling.score.ui;
+package com.jobsity.talyssondecastro.bowling.score.service.console;
 
 import com.jobsity.talyssondecastro.bowling.score.domain.Frame;
 
 /**
  * Created by talyssoncastro on 23/11/2020 1:25 PM.
  */
-public class LastFramePrinterService implements PrinterService {
+public class LastFramePrinterConsole implements PrinterConsole {
 
     @Override
     public String print(Frame frame) {
