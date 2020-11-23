@@ -24,7 +24,9 @@ public class GameServiceImpl implements GameService {
 
     @Override
     public void calculate(Game game) {
-        game.getPlayers().values().stream().collect(Collectors.toList()).forEach(p -> playerService.processScore(p));
+        if (game.getPlayers() != null) {
+            game.getPlayers().values().stream().collect(Collectors.toList()).forEach(p -> playerService.processScore(p));
+        }
     }
 
     @Override

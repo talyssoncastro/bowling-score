@@ -7,6 +7,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.PrintStream;
+
 /**
  * Created by talyssoncastro on 23/11/2020 1:06 AM.
  */
@@ -17,30 +19,41 @@ public class DisplayControllerImpl implements DisplayController {
     @NonNull
     private PrinterService printerService;
 
+    private PrintStream printOut = System.out;
+
+    public DisplayControllerImpl() {
+        //
+    }
+
+    public DisplayControllerImpl(PrinterService printerService, PrintStream printStream) {
+        this.printerService = printerService;
+        this.printOut = printStream;
+    }
+
     @Override
     public void print(Game game) {
 
-        System.out.append("Frame \t\t");
+        printOut.append("Frame \t\t");
         for (int i = 1; i <= 10; i++) {
-            System.out.append(i + "\t\t");
+            printOut.append(i + "\t\t");
         }
-        System.out.append("\n");
-        System.out.flush();
+        printOut.append("\n");
+        printOut.flush();
 
-        // Print player name
+        // Print player information
         game.getPlayers().forEach((s, player) -> {
-            System.out.println(player.getName());
-            System.out.append("Pinfalls\t");
+            printOut.println(player.getName());
+            printOut.append("Pinfalls\t");
             player.getFrames().forEach(frame -> {
-                System.out.append(printerService.getScoreToPrint(frame));
+                printOut.append(printerService.getScoreToPrint(frame));
             });
-            System.out.append("\n");
-            System.out.append("Score\t\t");
+            printOut.append("\n");
+            printOut.append("Score\t\t");
             player.getFrames().forEach(frame -> {
-                System.out.append(frame.getAmount() + "\t\t");
+                printOut.append(frame.getAmount() + "\t\t");
             });
-            System.out.append("\n");
-            System.out.flush();
+            printOut.append("\n");
+            printOut.flush();
         });
 
     }
