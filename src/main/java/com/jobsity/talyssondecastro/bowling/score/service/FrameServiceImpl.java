@@ -50,7 +50,7 @@ public class FrameServiceImpl implements FrameService {
     }
 
     private boolean isMaximumShotsReached(Frame frame) {
-        return frame.getShots().size() >= frame.getFrameType().getMaxShots();
+        return frame.getShots() != null && frame.getShots().size() >= frame.getFrameType().getMaxShots();
     }
 
 }
