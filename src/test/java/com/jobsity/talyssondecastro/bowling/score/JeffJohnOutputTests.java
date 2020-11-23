@@ -24,7 +24,7 @@ import java.nio.file.Files;
  */
 @SpringBootTest
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-public class JeffJohnOutput {
+public class JeffJohnOutputTests {
 
     @Autowired
     private FileController fileController;

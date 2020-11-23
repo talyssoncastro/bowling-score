@@ -16,7 +16,7 @@ import org.springframework.boot.test.context.SpringBootTest;
  */
 @SpringBootTest
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-public class FinalScore151 {
+public class FinalScore151Tests {
 
     @Autowired
     private PlayerService playerService;
