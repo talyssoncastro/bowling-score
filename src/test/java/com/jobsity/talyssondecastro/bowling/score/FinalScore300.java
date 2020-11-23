@@ -1,6 +1,7 @@
 package com.jobsity.talyssondecastro.bowling.score;
 
 import com.jobsity.talyssondecastro.bowling.score.domain.Frame;
+import com.jobsity.talyssondecastro.bowling.score.domain.FrameType;
 import com.jobsity.talyssondecastro.bowling.score.domain.Player;
 import com.jobsity.talyssondecastro.bowling.score.service.PlayerService;
 import org.junit.jupiter.api.Assertions;
@@ -26,25 +27,25 @@ public class FinalScore300 {
     public void loadData() {
         carl = new Player("Carl");
         // Shot 1
-        carl.addScore(Frame.builder().shot1(10).build());
+        carl.addFrame(Frame.builder().shot1(10).build());
         // Shot 2
-        carl.addScore(Frame.builder().shot1(10).build());
+        carl.addFrame(Frame.builder().shot1(10).build());
         // Shot 3
-        carl.addScore(Frame.builder().shot1(10).build());
+        carl.addFrame(Frame.builder().shot1(10).build());
         // Shot 4
-        carl.addScore(Frame.builder().shot1(10).build());
+        carl.addFrame(Frame.builder().shot1(10).build());
         // Shot 5
-        carl.addScore(Frame.builder().shot1(10).build());
+        carl.addFrame(Frame.builder().shot1(10).build());
         // Shot 6
-        carl.addScore(Frame.builder().shot1(10).build());
+        carl.addFrame(Frame.builder().shot1(10).build());
         // Shot 7
-        carl.addScore(Frame.builder().shot1(10).build());
+        carl.addFrame(Frame.builder().shot1(10).build());
         // Shot 8
-        carl.addScore(Frame.builder().shot1(10).build());
+        carl.addFrame(Frame.builder().shot1(10).build());
         // Shot 9
-        carl.addScore(Frame.builder().shot1(10).build());
+        carl.addFrame(Frame.builder().shot1(10).build());
         // Shot 10
-        carl.addScore(Frame.builder().shot1(10).shot2(10).shot3(10).build());
+        carl.addFrame(Frame.builder().frameType(FrameType.LAST).shot1(10).shot2(10).shot3(10).build());
 
         playerService.processScore(carl);
     }

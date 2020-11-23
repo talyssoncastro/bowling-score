@@ -26,25 +26,25 @@ public class FinalScore0 {
     public void loadData() {
         zero = new Player("Zero");
         // Shot 1
-        zero.addScore(Frame.builder().shot1(0).build());
+        zero.addFrame(Frame.builder().shot1(0).build());
         // Shot 2
-        zero.addScore(Frame.builder().shot1(0).build());
+        zero.addFrame(Frame.builder().shot1(0).build());
         // Shot 3
-        zero.addScore(Frame.builder().shot1(0).build());
+        zero.addFrame(Frame.builder().shot1(0).build());
         // Shot 4
-        zero.addScore(Frame.builder().shot1(0).build());
+        zero.addFrame(Frame.builder().shot1(0).build());
         // Shot 5
-        zero.addScore(Frame.builder().shot1(0).build());
+        zero.addFrame(Frame.builder().shot1(0).build());
         // Shot 6
-        zero.addScore(Frame.builder().shot1(0).build());
+        zero.addFrame(Frame.builder().shot1(0).build());
         // Shot 7
-        zero.addScore(Frame.builder().shot1(0).build());
+        zero.addFrame(Frame.builder().shot1(0).build());
         // Shot 8
-        zero.addScore(Frame.builder().shot1(0).build());
+        zero.addFrame(Frame.builder().shot1(0).build());
         // Shot 9
-        zero.addScore(Frame.builder().shot1(0).build());
+        zero.addFrame(Frame.builder().shot1(0).build());
         // Shot 10
-        zero.addScore(Frame.builder().shot1(0).build());
+        zero.addFrame(Frame.builder().shot1(0).build());
 
         playerService.processScore(zero);
     }

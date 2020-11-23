@@ -1,6 +1,7 @@
 package com.jobsity.talyssondecastro.bowling.score;
 
 import com.jobsity.talyssondecastro.bowling.score.domain.Frame;
+import com.jobsity.talyssondecastro.bowling.score.domain.FrameType;
 import com.jobsity.talyssondecastro.bowling.score.domain.Player;
 import com.jobsity.talyssondecastro.bowling.score.service.PlayerService;
 import org.junit.jupiter.api.Assertions;
@@ -26,25 +27,25 @@ public class FinalScore167 {
     public void loadData() {
         jeff = new Player("Jeff");
         // Shot 1
-        jeff.addScore(Frame.builder().shot1(10).build());
+        jeff.addFrame(Frame.builder().shot1(10).build());
         // Shot 2
-        jeff.addScore(Frame.builder().shot1(7).shot2(3).build());
+        jeff.addFrame(Frame.builder().shot1(7).shot2(3).build());
         // Shot 3
-        jeff.addScore(Frame.builder().shot1(9).shot2(0).build());
+        jeff.addFrame(Frame.builder().shot1(9).shot2(0).build());
         // Shot 4
-        jeff.addScore(Frame.builder().shot1(10).build());
+        jeff.addFrame(Frame.builder().shot1(10).build());
         // Shot 5
-        jeff.addScore(Frame.builder().shot1(0).shot2(8).build());
+        jeff.addFrame(Frame.builder().shot1(0).shot2(8).build());
         // Shot 6
-        jeff.addScore(Frame.builder().shot1(8).shot2(2).build());
+        jeff.addFrame(Frame.builder().shot1(8).shot2(2).build());
         // Shot 7
-        jeff.addScore(Frame.builder().shot1(0).shot2(6).build());
+        jeff.addFrame(Frame.builder().shot1(0).shot2(6).build());
         // Shot 8
-        jeff.addScore(Frame.builder().shot1(10).build());
+        jeff.addFrame(Frame.builder().shot1(10).build());
         // Shot 9
-        jeff.addScore(Frame.builder().shot1(10).build());
+        jeff.addFrame(Frame.builder().shot1(10).build());
         // Shot 10
-        jeff.addScore(Frame.builder().shot1(10).shot2(8).shot3(1).build());
+        jeff.addFrame(Frame.builder().frameType(FrameType.LAST).shot1(10).shot2(8).shot3(1).build());
 
         playerService.processScore(jeff);
     }

@@ -1,6 +1,7 @@
 package com.jobsity.talyssondecastro.bowling.score;
 
 import com.jobsity.talyssondecastro.bowling.score.domain.Frame;
+import com.jobsity.talyssondecastro.bowling.score.domain.FrameType;
 import com.jobsity.talyssondecastro.bowling.score.domain.Player;
 import com.jobsity.talyssondecastro.bowling.score.service.PlayerService;
 import org.junit.jupiter.api.Assertions;
@@ -26,25 +27,25 @@ public class FinalScore151 {
     public void loadData() {
         john = new Player("John");
         // Shot 1
-        john.addScore(Frame.builder().shot1(3).shot2(7).build());
+        john.addFrame(Frame.builder().shot1(3).shot2(7).build());
         // Shot 2
-        john.addScore(Frame.builder().shot1(6).shot2(3).build());
+        john.addFrame(Frame.builder().shot1(6).shot2(3).build());
         // Shot 3
-        john.addScore(Frame.builder().shot1(10).build());
+        john.addFrame(Frame.builder().shot1(10).build());
         // Shot 4
-        john.addScore(Frame.builder().shot1(8).shot2(1).build());
+        john.addFrame(Frame.builder().shot1(8).shot2(1).build());
         // Shot 5
-        john.addScore(Frame.builder().shot1(10).build());
+        john.addFrame(Frame.builder().shot1(10).build());
         // Shot 6
-        john.addScore(Frame.builder().shot1(10).build());
+        john.addFrame(Frame.builder().shot1(10).build());
         // Shot 7
-        john.addScore(Frame.builder().shot1(9).shot2(0).build());
+        john.addFrame(Frame.builder().shot1(9).shot2(0).build());
         // Shot 8
-        john.addScore(Frame.builder().shot1(7).shot2(3).build());
+        john.addFrame(Frame.builder().shot1(7).shot2(3).build());
         // Shot 9
-        john.addScore(Frame.builder().shot1(4).shot2(4).build());
+        john.addFrame(Frame.builder().shot1(4).shot2(4).build());
         // Shot 10
-        john.addScore(Frame.builder().shot1(10).shot2(9).shot3(0).build());
+        john.addFrame(Frame.builder().frameType(FrameType.LAST).shot1(10).shot2(9).shot3(0).build());
 
         playerService.processScore(john);
     }
