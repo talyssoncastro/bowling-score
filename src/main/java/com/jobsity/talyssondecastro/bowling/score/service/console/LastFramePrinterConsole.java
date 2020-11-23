@@ -17,7 +17,7 @@ public class LastFramePrinterConsole implements PrinterConsole {
             sb.append(frame.shot2Optional().get().getRepresentation() + "\t")
         );
         frame.shot3Optional().ifPresent( s ->
-            sb.append(frame.shot2Optional().get().getRepresentation() + "\t")
+            sb.append(frame.shot3Optional().get().getRepresentation() + "\t")
         );
         return sb.toString();
     }
