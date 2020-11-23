@@ -1,6 +1,7 @@
 package com.jobsity.talyssondecastro.bowling.score.service.printer;
 
 import com.jobsity.talyssondecastro.bowling.score.domain.Frame;
+import com.jobsity.talyssondecastro.bowling.score.domain.FrameType;
 import com.jobsity.talyssondecastro.bowling.score.service.PrinterService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -46,6 +47,17 @@ public class PrinterServiceTests {
         String result = printerService.getScoreToPrint(frame);
 
         Assertions.assertEquals("9\t0\t", result);
+
+    }
+
+    @Test
+    void should_print_x_9_1() {
+
+        Frame frame = Frame.builder().shot1(10).shot2(9).shot3(1).frameType(FrameType.LAST).build();
+
+        String result = printerService.getScoreToPrint(frame);
+
+        Assertions.assertEquals("X\t9\t1\t", result);
 
     }
 
