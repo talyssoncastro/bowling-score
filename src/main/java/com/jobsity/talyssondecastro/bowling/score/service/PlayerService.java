@@ -14,4 +14,6 @@ public interface PlayerService {
 
     Integer getFrameSum(List<Frame> frames, Integer index);
 
+    void addShot(Player player, Integer score, Boolean isNewFrame);
+
 }

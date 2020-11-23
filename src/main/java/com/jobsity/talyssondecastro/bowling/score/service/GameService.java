@@ -8,8 +8,10 @@ import com.jobsity.talyssondecastro.bowling.score.domain.Player;
  */
 public interface GameService {
 
-    void calculateScore(Player player);
+    void calculate(Game game);
 
     Player winnner(Game game);
+
+    void addShot(Player player, Integer score, Boolean isNewFrame);
 
 }

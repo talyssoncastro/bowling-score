@@ -5,7 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by talyssoncastro on 22/11/2020 6:39 PM.
@@ -16,6 +17,22 @@ import java.util.List;
 @Setter
 public class Game {
 
-    List<Player> players;
+    Map<String, Player> players;
+
+    public void addPlayer(Player player) {
+        if (players == null) {
+            players = new HashMap();
+        }
+
+        players.put(player.getName(), player);
+    }
+
+    public Player getPlayerByName(String name) {
+        if (players == null) {
+            return null;
+        }
+
+        return players.get(name);
+    }
 
 }
