@@ -1,4 +1,4 @@
-package com.jobsity.talyssondecastro.bowling.score;
+package com.jobsity.talyssondecastro.bowling.score.service.player;
 
 import com.jobsity.talyssondecastro.bowling.score.domain.Frame;
 import com.jobsity.talyssondecastro.bowling.score.domain.Player;
