@@ -1,5 +1,6 @@
 package com.jobsity.talyssondecastro.bowling.score.controller;
 
+import com.jobsity.talyssondecastro.bowling.score.config.SeparatorConfiguration;
 import com.jobsity.talyssondecastro.bowling.score.domain.Game;
 import com.jobsity.talyssondecastro.bowling.score.service.PrinterService;
 import lombok.NonNull;
@@ -19,42 +20,66 @@ public class DisplayControllerImpl implements DisplayController {
     @NonNull
     private PrinterService printerService;
 
+    @Autowired
+    private SeparatorConfiguration separatorConfiguration;
+
     private PrintStream printOut = System.out;
 
     public DisplayControllerImpl() {
         //
     }
 
-    public DisplayControllerImpl(PrinterService printerService, PrintStream printStream) {
+    public DisplayControllerImpl(PrinterService printerService, SeparatorConfiguration separatorConfiguration, PrintStream printStream) {
         this.printerService = printerService;
+        this.separatorConfiguration = separatorConfiguration;
         this.printOut = printStream;
     }
 
     @Override
     public void print(Game game) {
 
-        printOut.append("Frame \t\t");
+        append("Frame", 2);
         for (int i = 1; i <= 10; i++) {
-            printOut.append(i + "\t\t");
+            append(String.valueOf(i), 2);
         }
-        printOut.append("\n");
-        printOut.flush();
+        breakLine();
+        flush();
 
         // Print player information
         game.getPlayers().forEach((s, player) -> {
-            printOut.println(player.getName());
-            printOut.append("Pinfalls\t");
+            println(player.getName());
+            append("Pinfalls", 1);
             player.getFrames().forEach(frame -> {
-                printOut.append(printerService.getScoreToPrint(frame));
+                append(printerService.getScoreToPrint(frame), 0);
             });
-            printOut.append("\n");
-            printOut.append("Score\t\t");
+            breakLine();
+            append("Score", 2);
             player.getFrames().forEach(frame -> {
-                printOut.append(frame.getAmount() + "\t\t");
+                append(String.valueOf(frame.getAmount()), 2);
             });
-            printOut.append("\n");
-            printOut.flush();
+            breakLine();
+            flush();
         });
 
     }
+
+    private void append(String s, int separatorToAdd) {
+        printOut.append(s);
+        for (int i = 0; i < separatorToAdd; i++) {
+            printOut.append(separatorConfiguration.get());
+        }
+    }
+
+    private void println(String s) {
+        printOut.println(s);
+    }
+
+    private void breakLine() {
+        printOut.append("\n");
+    }
+
+    private void flush() {
+        printOut.flush();
+    }
+
 }
