@@ -25,11 +25,6 @@ public class GameServiceImpl implements GameService {
     }
 
     @Override
-    public Player winnner(Game game) {
-        return null;
-    }
-
-    @Override
     public void addShot(Player player, Integer score, Boolean isNewFrame) {
         playerService.addShot(player, score, isNewFrame);
     }

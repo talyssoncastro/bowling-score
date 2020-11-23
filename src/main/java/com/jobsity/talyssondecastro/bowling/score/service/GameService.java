@@ -10,8 +10,6 @@ public interface GameService {
 
     void calculate(Game game);
 
-    Player winnner(Game game);
-
     void addShot(Player player, Integer score, Boolean isNewFrame);
 
 }

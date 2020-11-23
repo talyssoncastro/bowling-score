@@ -15,6 +15,7 @@ public class FrameServiceImpl implements FrameService {
 
     @Override
     public void addShot(Frame frame, Integer score) {
+
         if (isMaximumShotsReached(frame)) {
             throw new RuntimeException("Maximum scores reached");
         }
