@@ -41,6 +41,8 @@ public class FileControllerImpl implements FileController {
 
             String lastName = "";
 
+            Boolean frameFinished = false;
+
             while (inFile.hasNext()) {
 
                 // Read the line from the file.
@@ -49,7 +51,7 @@ public class FileControllerImpl implements FileController {
                 LineData lineData = lineService.process(line);
 
                 Boolean isNewFrame = false;
-                if (!lastName.equals(lineData.getName())) {
+                if (!lastName.equals(lineData.getName()) || frameFinished) {
                     lastName = lineData.getName();
                     isNewFrame = true;
                 }
@@ -69,6 +71,8 @@ public class FileControllerImpl implements FileController {
                     System.err.println(e.getMessage());
                     continue;
                 }
+
+                frameFinished = gameService.isFrameFinished(player.lastFrame());
 
             }
 

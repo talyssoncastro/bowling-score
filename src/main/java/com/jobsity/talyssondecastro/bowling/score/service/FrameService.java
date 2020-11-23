@@ -15,4 +15,6 @@ public interface FrameService {
 
     Frame createFrame(Shot shot, FrameType frameType);
 
+    Boolean isFrameFinished(Frame frame);
+
 }

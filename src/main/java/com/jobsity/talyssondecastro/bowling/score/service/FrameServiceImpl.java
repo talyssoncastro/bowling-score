@@ -49,6 +49,11 @@ public class FrameServiceImpl implements FrameService {
         return newFrame;
     }
 
+    @Override
+    public Boolean isFrameFinished(Frame frame) {
+        return frame.getFrameType().getMaxScore() == frame.getScoreSum() || frame.hasAllShots();
+    }
+
     private boolean isMaximumShotsReached(Frame frame) {
         return frame.getShots() != null && frame.getShots().size() >= frame.getFrameType().getMaxShots();
     }

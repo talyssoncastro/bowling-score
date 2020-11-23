@@ -1,5 +1,6 @@
 package com.jobsity.talyssondecastro.bowling.score.service;
 
+import com.jobsity.talyssondecastro.bowling.score.domain.Frame;
 import com.jobsity.talyssondecastro.bowling.score.domain.Game;
 import com.jobsity.talyssondecastro.bowling.score.domain.Player;
 import com.jobsity.talyssondecastro.bowling.score.domain.Shot;
@@ -32,5 +33,10 @@ public class GameServiceImpl implements GameService {
     @Override
     public void addShot(Player player, Shot shot, Boolean isNewFrame) throws InvalidScoreException, MaximumItemsReachedException {
         playerService.addShot(player, shot, isNewFrame);
+    }
+
+    @Override
+    public Boolean isFrameFinished(Frame frame) {
+        return playerService.isFrameFinished(frame);
     }
 }

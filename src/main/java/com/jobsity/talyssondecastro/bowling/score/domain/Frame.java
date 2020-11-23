@@ -61,6 +61,10 @@ public class Frame {
         return shots.size() >= 3 ? Optional.ofNullable(shots.get(2)) : Optional.empty();
     }
 
+    public Boolean hasAllShots() {
+        return shots.size() >= frameType.getMaxShots();
+    }
+
     public Integer getScoreSum() {
         return shots.stream().mapToInt(s -> s.getScore()).sum();
     }

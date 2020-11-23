@@ -1,5 +1,6 @@
 package com.jobsity.talyssondecastro.bowling.score.service;
 
+import com.jobsity.talyssondecastro.bowling.score.domain.Frame;
 import com.jobsity.talyssondecastro.bowling.score.domain.Game;
 import com.jobsity.talyssondecastro.bowling.score.domain.Player;
 import com.jobsity.talyssondecastro.bowling.score.domain.Shot;
@@ -14,5 +15,7 @@ public interface GameService {
     void calculate(Game game);
 
     void addShot(Player player, Shot shot, Boolean isNewFrame) throws InvalidScoreException, MaximumItemsReachedException;
+
+    Boolean isFrameFinished(Frame frame);
 
 }

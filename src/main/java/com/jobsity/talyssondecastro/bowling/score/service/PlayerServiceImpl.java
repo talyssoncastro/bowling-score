@@ -98,6 +98,11 @@ public class PlayerServiceImpl implements PlayerService {
         }
     }
 
+    @Override
+    public Boolean isFrameFinished(Frame frame) {
+        return frameService.isFrameFinished(frame);
+    }
+
     private void addNewFrame(Player player, Shot shot) throws MaximumItemsReachedException {
 
         if (isMaximumFramesReached(player)) {

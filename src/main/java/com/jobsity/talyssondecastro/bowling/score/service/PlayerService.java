@@ -19,4 +19,6 @@ public interface PlayerService {
 
     void addShot(Player player, Shot shot, Boolean isNewFrame) throws InvalidScoreException, MaximumItemsReachedException;
 
+    Boolean isFrameFinished(Frame frame);
+
 }
