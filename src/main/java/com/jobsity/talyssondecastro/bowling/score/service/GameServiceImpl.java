@@ -2,6 +2,8 @@ package com.jobsity.talyssondecastro.bowling.score.service;
 
 import com.jobsity.talyssondecastro.bowling.score.domain.Game;
 import com.jobsity.talyssondecastro.bowling.score.domain.Player;
+import com.jobsity.talyssondecastro.bowling.score.domain.Shot;
+import com.jobsity.talyssondecastro.bowling.score.exception.InvalidScoreException;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +27,7 @@ public class GameServiceImpl implements GameService {
     }
 
     @Override
-    public void addShot(Player player, Integer score, Boolean isNewFrame) {
-        playerService.addShot(player, score, isNewFrame);
+    public void addShot(Player player, Shot shot, Boolean isNewFrame) throws InvalidScoreException {
+        playerService.addShot(player, shot, isNewFrame);
     }
 }

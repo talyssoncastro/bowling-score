@@ -14,6 +14,6 @@ public class LineData {
 
     private String name;
 
-    private Integer score;
+    private Shot shot;
 
 }

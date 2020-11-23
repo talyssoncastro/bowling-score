@@ -1,6 +1,7 @@
 package com.jobsity.talyssondecastro.bowling.score.domain;
 
-import lombok.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +14,7 @@ import java.util.Optional;
 @Setter
 public class Frame {
 
-    private List<Integer> shots;
+    private List<Shot> shots;
 
     private FrameType frameType = FrameType.NORMAL;
 
@@ -48,32 +49,28 @@ public class Frame {
         return result;
     }
 
-    public Optional<Integer> shot1Optional() {
+    public Optional<Shot> shot1Optional() {
         return shots.size() >= 1 ? Optional.ofNullable(shots.get(0)) : Optional.empty();
     }
 
-    public Optional<Integer> shot2Optional() {
+    public Optional<Shot> shot2Optional() {
         return shots.size() >= 2 ? Optional.ofNullable(shots.get(1)) : Optional.empty();
     }
 
-    public Optional<Integer> shot3Optional() {
+    public Optional<Shot> shot3Optional() {
         return shots.size() >= 3 ? Optional.ofNullable(shots.get(2)) : Optional.empty();
     }
 
     public Integer getScoreSum() {
-        return shots.stream().reduce(0, Integer::sum);
+        return shots.stream().mapToInt(s -> s.getScore()).sum();
     }
 
-//    public boolean isFilledUp() {
-//        return (shots.size() >= frameType.getMaxShots() || getScoreSum() == frameType.getMaxScore());
-//    }
-
-    public void addShot(Integer score) {
+    public void addShot(Shot shot) {
         if (shots == null) {
             shots = new ArrayList();
         }
 
-        shots.add(score);
+        shots.add(shot);
 
     }
 
@@ -84,18 +81,33 @@ public class Frame {
             this.target = new Frame();
         }
 
-        public Builder shot1(Integer shot1) {
+        public Builder shot1(Shot shot1) {
             target.addShot(shot1);
             return this;
         }
 
-        public Builder shot2(Integer shot2) {
+        public Builder shot1(Integer shot1) {
+            target.addShot(Shot.builder().score(shot1).build());
+            return this;
+        }
+
+        public Builder shot2(Shot shot2) {
             target.addShot(shot2);
             return this;
         }
 
-        public Builder shot3(Integer shot3) {
+        public Builder shot2(Integer shot2) {
+            target.addShot(Shot.builder().score(shot2).build());
+            return this;
+        }
+
+        public Builder shot3(Shot shot3) {
             target.addShot(shot3);
+            return this;
+        }
+
+        public Builder shot3(Integer shot3) {
+            target.addShot(Shot.builder().score(shot3).build());
             return this;
         }
 

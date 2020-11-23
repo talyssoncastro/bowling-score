@@ -1,7 +1,8 @@
 package com.jobsity.talyssondecastro.bowling.score.service;
 
 import com.jobsity.talyssondecastro.bowling.score.domain.LineData;
-import com.jobsity.talyssondecastro.bowling.score.utils.IntegerUtils;
+import com.jobsity.talyssondecastro.bowling.score.domain.Shot;
+import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,6 +13,9 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class LineServiceImpl implements LineService {
+
+    @NonNull
+    private ScoreService scoreService;
 
     @Override
     public LineData process(String line) {
@@ -26,17 +30,11 @@ public class LineServiceImpl implements LineService {
             String name = values[0];
             String value = values[1];
 
-            Integer score;
+            Integer score = scoreService.getScoreByInput(value);
 
-            if ("F".equals(value)) {
-                score = 0;
-            } else if ("X".equals(value)) {
-                score = 10;
-            } else {
-                score = IntegerUtils.parseWithDefault(value, 0);
-            }
+            Shot shot = Shot.builder().score(score).representation(value).build();
 
-            result = new LineData(name, score);
+            result = new LineData(name, shot);
 
         }
 

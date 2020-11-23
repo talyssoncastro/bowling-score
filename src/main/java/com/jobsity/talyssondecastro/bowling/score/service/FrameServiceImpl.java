@@ -2,9 +2,17 @@ package com.jobsity.talyssondecastro.bowling.score.service;
 
 import com.jobsity.talyssondecastro.bowling.score.domain.Frame;
 import com.jobsity.talyssondecastro.bowling.score.domain.FrameType;
+import com.jobsity.talyssondecastro.bowling.score.domain.Shot;
+import com.jobsity.talyssondecastro.bowling.score.exception.InvalidScoreException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import javax.validation.ConstraintViolation;
+import javax.validation.Validation;
+import javax.validation.Validator;
+import javax.validation.ValidatorFactory;
+import java.util.Set;
 
 /**
  * Created by talyssoncastro on 23/11/2020 9:34 AM.
@@ -14,20 +22,28 @@ import org.springframework.stereotype.Service;
 public class FrameServiceImpl implements FrameService {
 
     @Override
-    public void addShot(Frame frame, Integer score) {
+    public void addShot(Frame frame, Shot shot) throws InvalidScoreException {
 
         if (isMaximumShotsReached(frame)) {
             throw new RuntimeException("Maximum scores reached");
         }
 
-        frame.addShot(score);
+        ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+        Validator validator = factory.getValidator();
+        Set<ConstraintViolation<Shot>> violations = validator.validate(shot);
+
+        for (ConstraintViolation<Shot> violation : violations) {
+            throw new InvalidScoreException(violation.getMessage());
+        }
+
+        frame.addShot(shot);
 
     }
 
     @Override
-    public Frame createFrame(Integer score, FrameType frameType) {
+    public Frame createFrame(Shot shot, FrameType frameType) {
 
-        Frame newFrame = Frame.builder().frameType(frameType).shot1(score).build();
+        Frame newFrame = Frame.builder().frameType(frameType).shot1(shot).build();
 
         return newFrame;
     }
