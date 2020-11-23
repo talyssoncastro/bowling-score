@@ -4,6 +4,7 @@ import com.jobsity.talyssondecastro.bowling.score.domain.Frame;
 import com.jobsity.talyssondecastro.bowling.score.domain.FrameType;
 import com.jobsity.talyssondecastro.bowling.score.domain.Shot;
 import com.jobsity.talyssondecastro.bowling.score.exception.InvalidScoreException;
+import com.jobsity.talyssondecastro.bowling.score.exception.MaximumItemsReachedException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,10 +23,10 @@ import java.util.Set;
 public class FrameServiceImpl implements FrameService {
 
     @Override
-    public void addShot(Frame frame, Shot shot) throws InvalidScoreException {
+    public void addShot(Frame frame, Shot shot) throws InvalidScoreException, MaximumItemsReachedException {
 
         if (isMaximumShotsReached(frame)) {
-            throw new RuntimeException("Maximum scores reached");
+            throw new MaximumItemsReachedException("Maximum scores reached");
         }
 
         ValidatorFactory factory = Validation.buildDefaultValidatorFactory();

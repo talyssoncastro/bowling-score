@@ -4,6 +4,7 @@ import com.jobsity.talyssondecastro.bowling.score.domain.Game;
 import com.jobsity.talyssondecastro.bowling.score.domain.LineData;
 import com.jobsity.talyssondecastro.bowling.score.domain.Player;
 import com.jobsity.talyssondecastro.bowling.score.exception.InvalidScoreException;
+import com.jobsity.talyssondecastro.bowling.score.exception.MaximumItemsReachedException;
 import com.jobsity.talyssondecastro.bowling.score.service.GameService;
 import com.jobsity.talyssondecastro.bowling.score.service.LineService;
 import lombok.NonNull;
@@ -63,6 +64,9 @@ public class FileControllerImpl implements FileController {
                     gameService.addShot(player, lineData.getShot(), isNewFrame);
                 } catch (InvalidScoreException e) {
                     System.err.println("Score " + lineData.getShot().getScore() + " is not acceptable.");
+                    continue;
+                } catch (MaximumItemsReachedException e) {
+                    System.err.println(e.getMessage());
                     continue;
                 }
 

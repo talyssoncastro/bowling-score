@@ -5,6 +5,7 @@ import com.jobsity.talyssondecastro.bowling.score.domain.FrameType;
 import com.jobsity.talyssondecastro.bowling.score.domain.Player;
 import com.jobsity.talyssondecastro.bowling.score.domain.Shot;
 import com.jobsity.talyssondecastro.bowling.score.exception.InvalidScoreException;
+import com.jobsity.talyssondecastro.bowling.score.exception.MaximumItemsReachedException;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -88,7 +89,7 @@ public class PlayerServiceImpl implements PlayerService {
     }
 
     @Override
-    public void addShot(Player player, Shot shot, Boolean isNewFrame) throws InvalidScoreException {
+    public void addShot(Player player, Shot shot, Boolean isNewFrame) throws InvalidScoreException, MaximumItemsReachedException {
 
         if (isNewFrame) {
             addNewFrame(player, shot);
@@ -97,10 +98,10 @@ public class PlayerServiceImpl implements PlayerService {
         }
     }
 
-    private void addNewFrame(Player player, Shot shot) {
+    private void addNewFrame(Player player, Shot shot) throws MaximumItemsReachedException {
 
         if (isMaximumFramesReached(player)) {
-            throw new RuntimeException("Maximum frames reached"); // TODO throw a custom expcetion to handle in a try-catch
+            throw new MaximumItemsReachedException("Maximum frames reached");
         }
 
         Frame createdFrame = frameService.createFrame(shot, isLastButOne(player) ? FrameType.LAST : FrameType.NORMAL);
