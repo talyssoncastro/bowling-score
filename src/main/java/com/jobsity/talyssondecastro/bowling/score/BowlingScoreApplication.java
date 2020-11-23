@@ -11,6 +11,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.io.File;
+import java.io.IOException;
 
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 @SpringBootApplication
@@ -35,8 +36,12 @@ public class BowlingScoreApplication implements CommandLineRunner {
 			return;
 		}
 
-		Game game = fileController.readFromFile(new File(args[0]));
-		displayController.print(game);
+		try {
+			Game game = fileController.readFromFile(new File(args[0]));
+			displayController.print(game);
+		} catch (IOException e) {
+			System.err.println("Failed to load the file of input data. " + e.getMessage());
+		}
 
 	}
 }
