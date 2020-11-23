@@ -1,5 +1,6 @@
-package com.jobsity.talyssondecastro.bowling.score;
+package com.jobsity.talyssondecastro.bowling.score.file;
 
+import com.jobsity.talyssondecastro.bowling.score.config.SeparatorConfiguration;
 import com.jobsity.talyssondecastro.bowling.score.controller.DisplayController;
 import com.jobsity.talyssondecastro.bowling.score.controller.DisplayControllerImpl;
 import com.jobsity.talyssondecastro.bowling.score.controller.FileController;
@@ -32,6 +33,9 @@ public class JeffJohnOutputTests {
     @Autowired
     private PrinterService printerService;
 
+    @Autowired
+    private SeparatorConfiguration separatorConfiguration;
+
     private DisplayController displayController;
 
     private PrintStream standardOut = System.out;
@@ -42,7 +46,7 @@ public class JeffJohnOutputTests {
 
         standardOut = new PrintStream(outputStreamCaptor);
 
-        displayController = new DisplayControllerImpl(printerService, standardOut);
+        displayController = new DisplayControllerImpl(printerService, separatorConfiguration, standardOut);
 
     }
 
