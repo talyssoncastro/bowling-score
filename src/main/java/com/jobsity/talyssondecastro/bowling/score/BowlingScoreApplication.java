@@ -31,6 +31,7 @@ public class BowlingScoreApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 
 		if (args.length < 1) {
+			System.err.println("The input file was not provided. The program will shutdown");
 			return;
 		}
 
